@@ -24,7 +24,8 @@
     background: '#F03D25',
     fallback: true,
     crossOrigin: true,
-    abbreviate: true
+    abbreviate: true,
+    ref: "icon"
   };
 
   var ua = (function () {
@@ -43,13 +44,15 @@
     mozilla: ua('mozilla') && !ua('chrome') && !ua('safari')
   };
 
+  var re = new RegExp("\b"+options.ref+"\b", "i");
+
   // private methods
   var getFaviconTag = function(){
 
     var links = document.getElementsByTagName('link');
 
     for(var i=0, len=links.length; i < len; i++) {
-      if ((links[i].getAttribute('rel') || '').match(/\bicon\b/i)) {
+      if ((links[i].getAttribute('rel') || '').match(re)) {
         return links[i];
       }
     }
@@ -64,7 +67,7 @@
 
     for(var i=0, len=links.length; i < len; i++) {
       var exists = (typeof(links[i]) !== 'undefined');
-      if (exists && (links[i].getAttribute('rel') || '').match(/\bicon\b/i)) {
+      if (exists && (links[i].getAttribute('rel') || '').match(re)) {
         head.removeChild(links[i]);
       }
     }

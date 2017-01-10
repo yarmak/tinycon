@@ -45,6 +45,7 @@ Tinycon.setOptions({
 	color: '#ffffff',
 	background: '#549A2F',
 	fallback: true
+	ref: "icon"
 });
 ```
 
